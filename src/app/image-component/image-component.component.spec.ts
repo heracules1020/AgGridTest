@@ -1,6 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ImageComponentComponent } from './image-component.component';
+import { AgGridModule } from 'ag-grid-angular';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+
+import { MyGridComponentComponent } from '../my-grid-component/my-grid-component.component';
+import { ImageComponentComponent } from '../image-component/image-component.component';
+import { CountStatusBarComponent } from '../count-status-bar-component/count-status-bar-component.component';
+
 
 describe('ImageComponentComponent', () => {
   let component: ImageComponentComponent;
@@ -8,7 +15,16 @@ describe('ImageComponentComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ImageComponentComponent ]
+      declarations: [
+        ImageComponentComponent,
+        MyGridComponentComponent,
+        CountStatusBarComponent
+      ],
+      imports: [
+        BrowserModule,
+        AgGridModule.withComponents([ImageComponentComponent, CountStatusBarComponent]),
+        HttpClientModule
+      ],
     })
     .compileComponents();
   }));
@@ -19,7 +35,7 @@ describe('ImageComponentComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should have "px"', () => {
+    expect(component.getStyles).toBeTruthy();
   });
 });

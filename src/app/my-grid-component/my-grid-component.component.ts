@@ -3,6 +3,7 @@ import { GridOptions } from 'ag-grid-community';
 import { Observable, of } from 'rxjs';
 import { FetchApiData } from '../service';
 import { ImageComponentComponent } from '../image-component/image-component.component';
+import { CountStatusBarComponent } from '../count-status-bar-component/count-status-bar-component.component';
 import 'ag-grid-enterprise';
 
 @Component({
@@ -12,12 +13,17 @@ import 'ag-grid-enterprise';
 })
 export class MyGridComponentComponent implements OnInit {
 
-  private gridOptions: GridOptions;
+  gridOptions: GridOptions;
+  gridApi;
+  gridColumnApi;
+  isShowCheck: boolean;
   constructor(private fetchApiData: FetchApiData) {
   }
   ngOnInit() {
+    this.isShowCheck = true;
     this.gridOptions =  {
       pagination: true,
+      enableRangeSelection: true,
       rowSelection: 'multiple',
       paginationPageSize : 10,
       rowHeight : 90,
@@ -28,6 +34,24 @@ export class MyGridComponentComponent implements OnInit {
       resizable: true,
       filter: true,
     };
+    this.gridOptions.statusBar = {
+      statusPanels: [
+        {
+          statusPanel: 'countStatusBarComponent',
+          align: 'left'
+        },
+        {
+          statusPanel: 'agSelectedRowCountComponent',
+          align: 'left',
+          statusPanelParams: {
+            aggFuncs: ['count']
+          }
+        }
+      ]
+    };
+    this.gridOptions.frameworkComponents = {
+      countStatusBarComponent: CountStatusBarComponent
+    };
     this.gridOptions.columnDefs = [
       {
         headerName: '',
@@ -36,6 +60,7 @@ export class MyGridComponentComponent implements OnInit {
         filter: false,
         sortable: false,
         resizable: false,
+        suppressToolPanel: true,
         checkboxSelection(params) {
           return params.columnApi.getRowGroupColumns().length === 0;
         },
@@ -79,7 +104,7 @@ export class MyGridComponentComponent implements OnInit {
     ];
     this.setData();
   }
-  getFetchData(): Observable<any[]> {
+  getFetchData(): Observable<any> {
     return this.fetchApiData.getRowData();
   }
   setData() {
@@ -96,6 +121,11 @@ export class MyGridComponentComponent implements OnInit {
       this.gridOptions.api.setRowData(finalData);
     });
   }
+  onGridReady(params) {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+    params.api.sizeColumnsToFit();
+  }
   getContextMenuItems(params) {
     const result = [
       {
@@ -109,17 +139,21 @@ export class MyGridComponentComponent implements OnInit {
       {
         name: 'Copy',
         action: () => {
-          window.alert('Copy ');
+          window.alert('Copy');
         }
       },
       {
         name: 'Paste',
         action: () => {
-          window.alert('Paste ');
+          window.alert('Paste');
         },
         disabled: true
       }
     ];
     return result;
+  }
+  showCheckbox() {
+    this.isShowCheck = !this.isShowCheck;
+    this.gridColumnApi.setColumnVisible('checkbox', this.isShowCheck);
   }
 }

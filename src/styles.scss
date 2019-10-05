@@ -9,3 +9,41 @@
 .bold {
     font-weight: bold;
 }
+
+.control-header {
+    padding: 15px 10px;
+    background: #0084e7;
+    color: #ffffff;
+    button {
+        font-size: 1rem;
+        padding: 5px;
+        color: #0084e7;
+        border: none;
+        border-radius: 5px;
+        background-color: #ffffff;
+        &:hover {
+            background-color: #e4e4e4;
+            font-weight: bold;
+        }
+    }
+}
+
+.ag-status-bar-left {
+    span {
+        font-size: 1rem;
+    }
+}
+
+.ag-paging-panel {
+    span {
+        font-size: 1rem;
+        div {
+            span {
+                &::before {
+                    font-size: 1.2rem;
+                    vertical-align: bottom;
+                }
+            }
+        }
+    }
+}

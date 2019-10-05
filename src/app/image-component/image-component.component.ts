@@ -8,11 +8,10 @@ import { Component, OnInit } from '@angular/core';
 export class ImageComponentComponent {
 
   private params: any;
-
   agInit(params: any): void {
       this.params = params;
   }
-  setStyles() {
+  getStyles() {
     const styles = {
       width: this.params.value.width + 'px',
       height: this.params.value.height + 'px'

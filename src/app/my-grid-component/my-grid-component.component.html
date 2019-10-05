@@ -1,4 +1,7 @@
 <div style="width: 1410px;">
-    <ag-grid-angular #agGrid style="width: 100%; height: 900px;" class="ag-theme-balham" [allowContextMenuWithControlKey]="true" [gridOptions]="gridOptions">
+    <div class="control-header">
+        Check Visible: <button (click)="showCheckbox()">Checkable</button>
+    </div>
+    <ag-grid-angular #agGrid style="width: 100%; height: 900px;" class="ag-theme-balham" [allowContextMenuWithControlKey]="true" [gridOptions]="gridOptions" (gridReady)="onGridReady($event)">
     </ag-grid-angular>
 </div>

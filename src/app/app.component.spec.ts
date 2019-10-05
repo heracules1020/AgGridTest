@@ -1,11 +1,25 @@
 import { TestBed, async } from '@angular/core/testing';
+import { AgGridModule } from 'ag-grid-angular';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
+import { MyGridComponentComponent } from './my-grid-component/my-grid-component.component';
+import { ImageComponentComponent } from './image-component/image-component.component';
+import { CountStatusBarComponent } from './count-status-bar-component/count-status-bar-component.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        ImageComponentComponent,
+        MyGridComponentComponent,
+        CountStatusBarComponent
+      ],
+      imports: [
+        BrowserModule,
+        AgGridModule.withComponents([ImageComponentComponent, CountStatusBarComponent]),
+        HttpClientModule
       ],
     }).compileComponents();
   }));
@@ -20,12 +34,5 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app.title).toEqual('ag-grid-test');
-  });
-
-  it('should render title in a h1 tag', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to ag-grid-test!');
   });
 });
