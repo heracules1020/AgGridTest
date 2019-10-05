@@ -8,14 +8,12 @@ import { Component, OnInit } from '@angular/core';
 export class ImageComponentComponent {
 
   private params: any;
+  private styles: any;
   agInit(params: any): void {
       this.params = params;
-  }
-  getStyles() {
-    const styles = {
-      width: this.params.value.width + 'px',
-      height: this.params.value.height + 'px'
-    };
-    return styles;
+      this.styles = {
+        width: this.params.value.width + 'px',
+        height: this.params.value.height + 'px'
+      };
   }
 }

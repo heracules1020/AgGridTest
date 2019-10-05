@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import "~ag-grid-community/dist/styles/ag-grid.css";
-@import "~ag-grid-community/dist/styles/ag-theme-balham.css";
+@import "~ag-grid-community/dist/styles/ag-theme-dark.css";
 .blueFont {
     color: blue;
 }
@@ -25,6 +25,22 @@
             background-color: #e4e4e4;
             font-weight: bold;
         }
+    }
+}
+
+.ag-header-cell-label {
+    span {
+        margin: 0 auto;
+    }
+}
+
+.ag-cell-value {
+    white-space: pre-wrap;
+    &.padding-top-20 {
+        padding-top: 20px;
+    }
+    &.padding-top-5 {
+        padding-top: 5px;
     }
 }
 

@@ -83,6 +83,7 @@ export class MyGridComponentComponent implements OnInit {
       {
         headerName: 'Published on',
         field: 'publishedAt',
+        cellClass: 'padding-top-20',
         onCellContextMenu(params) {
           return params.api.hidePopupMenu();
         },
@@ -91,11 +92,13 @@ export class MyGridComponentComponent implements OnInit {
       {
         headerName: 'Video Title',
         field: 'title',
+        cellClass: 'padding-top-20',
         width: 500
       },
       {
         headerName: 'Description',
         field: 'description',
+        cellClass: 'padding-top-5',
         onCellContextMenu(params) {
           return params.api.hidePopupMenu();
         },

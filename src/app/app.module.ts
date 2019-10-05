@@ -6,7 +6,6 @@ import { MyGridComponentComponent } from './my-grid-component/my-grid-component.
 import { HttpClientModule } from '@angular/common/http';
 import { ImageComponentComponent } from './image-component/image-component.component';
 import { CountStatusBarComponent } from './count-status-bar-component/count-status-bar-component.component';
- 
 @NgModule({
   declarations: [
     AppComponent,

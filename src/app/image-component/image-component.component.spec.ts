@@ -34,8 +34,4 @@ describe('ImageComponentComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-
-  it('should have "px"', () => {
-    expect(component.getStyles).toBeTruthy();
-  });
 });
